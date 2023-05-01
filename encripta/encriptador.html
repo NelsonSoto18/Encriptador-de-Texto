@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Encriptador y Desencriptador ROT13</title>
+</head>
+<body>
+	<h1>Encriptador y Desencriptador ROT13</h1>
+	<form>
+		<label for="texto">Ingrese el texto:</label><br>
+		<textarea id="texto" name="texto" rows="4" cols="50"></textarea><br>
+		<button type="button" onclick="encriptar()">Encriptar</button>
+		<button type="button" onclick="desencriptar()">Desencriptar</button>
+	</form>
+	<p>Resultado:</p>
+	<p id="resultado"></p>
+	<script src="encriptador.js"></script>
+</body>
+</html>
+
+<script>
+    function encriptar() {
+    var texto = document.getElementById("texto").value;
+    var resultado = "";
+  
+    for (var i = 0; i < texto.length; i++) {
+      var caracter = texto[i];
+      if (caracter.match(/[a-z]/i)) {
+        var codigo = texto.charCodeAt(i);
+        if ((codigo >= 65 && codigo <= 77) || (codigo >= 97 && codigo <= 109)) {
+          caracter = String.fromCharCode(codigo + 13);
+        } else if ((codigo >= 78 && codigo <= 90) || (codigo >= 110 && codigo <= 122)) {
+          caracter = String.fromCharCode(codigo - 13);
+        }
+      }
+      resultado += caracter;
+    }
+  
+    document.getElementById("resultado").innerHTML = resultado;
+  }
+  
+  function desencriptar() {
+    var texto = document.getElementById("texto").value;
+    var resultado = "";
+  
+    for (var i = 0; i < texto.length; i++) {
+      var caracter = texto[i];
+      if (caracter.match(/[a-z]/i)) {
+        var codigo = texto.charCodeAt(i);
+        if ((codigo >= 78 && codigo <= 90) || (codigo >= 110 && codigo <= 122)) {
+          caracter = String.fromCharCode(codigo - 13);
+        } else if ((codigo >= 65 && codigo <= 77) || (codigo >= 97 && codigo <= 109)) {
+          caracter = String.fromCharCode(codigo + 13);
+        }
+      }
+      resultado += caracter;
+    }
+  
+    document.getElementById("resultado").innerHTML = resultado;
+  }
+  
+</script>
+
+
+
+
+
